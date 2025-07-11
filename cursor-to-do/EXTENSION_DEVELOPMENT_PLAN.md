@@ -1,4 +1,4 @@
-# 🎤 WhisperX2 Browser Extension - Упрощенный флоу
+# 🎤 whisperx-fronted-docker-compose Browser Extension - Упрощенный флоу
 
 ## 📋 Обзор проекта
 
@@ -130,7 +130,7 @@ async function uploadRecording(audioBlob, userInfo) {
 ### Состояние 1: Нужна авторизация
 ```html
 <div id="login-section">
-  <h3>🎤 WhisperX2</h3>
+  <h3>🎤 whisperx-fronted-docker-compose</h3>
   <p>Войдите для записи встреч</p>
   <button id="login-btn">🔐 Войти через Google</button>
 </div>
@@ -139,7 +139,7 @@ async function uploadRecording(audioBlob, userInfo) {
 ### Состояние 2: Готов к записи
 ```html
 <div id="recording-section">
-  <h3>🎤 WhisperX2</h3>
+  <h3>🎤 whisperx-fronted-docker-compose</h3>
   <div id="user-info">Привет, <span id="user-name">Имя</span>!</div>
   
   <button id="record-btn">🎙️ Записать встречу</button>

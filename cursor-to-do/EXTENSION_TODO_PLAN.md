@@ -1,4 +1,4 @@
-# 📋 TODO План - WhisperX2 Chrome Extension (С простой авторизацией)
+# 📋 TODO План - whisperx-fronted-docker-compose Chrome Extension (С простой авторизацией)
 
 ## 🎯 Цель проекта
 Chrome расширение с простой авторизацией: проверить статус → записать → загрузить → уведомление
@@ -12,10 +12,10 @@ Chrome расширение с простой авторизацией: пров
 ## 📅 День 1: Базовая структура и авторизация
 
 ### ✅ 1.1 Создание структуры проекта
-- [ ] Создать папку `whisperx2-extension/`
+- [ ] Создать папку `whisperx-fronted-docker-compose-extension/`
 - [ ] Создать базовую структуру файлов:
   ```
-  whisperx2-extension/
+  whisperx-fronted-docker-compose-extension/
   ├── manifest.json
   ├── popup/
   │   ├── popup.html
@@ -33,9 +33,9 @@ Chrome расширение с простой авторизацией: пров
   ```json
   {
     "manifest_version": 3,
-    "name": "WhisperX2 Meeting Recorder",
+    "name": "whisperx-fronted-docker-compose Meeting Recorder",
     "version": "1.0.0",
-    "description": "Record meeting audio and transcribe with WhisperX2",
+    "description": "Record meeting audio and transcribe with whisperx-fronted-docker-compose",
     "permissions": [
       "tabCapture",
       "activeTab", 
@@ -179,9 +179,9 @@ Chrome расширение с простой авторизацией: пров
 - [ ] Уведомление с именем пользователя:
   ```javascript
   chrome.notifications.create('whisperx2-upload', {
-    title: 'WhisperX2 - Запись загружена!',
+title: 'whisperx-fronted-docker-compose - Запись загружена!',
     message: `Транскрипция для ${currentUser.name || currentUser.email} в процессе.`,
-    buttons: [{title: 'Открыть WhisperX2'}]
+    buttons: [{title: 'Открыть whisperx-fronted-docker-compose'}]
   });
   ```
 

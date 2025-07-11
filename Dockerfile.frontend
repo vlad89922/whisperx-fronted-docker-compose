@@ -1,9 +1,9 @@
-# WhisperX2 Frontend - Статический веб-сервер
+# whisperx-fronted-docker-compose Frontend - Статический веб-сервер
 FROM python:3.11-slim
 
 # Метаданные
-LABEL maintainer="WhisperX2 Team"
-LABEL description="WhisperX2 Frontend Web Interface"
+LABEL maintainer="whisperx-fronted-docker-compose Team"
+LABEL description="whisperx-fronted-docker-compose Frontend Web Interface"
 LABEL version="2.0.0"
 
 # Переменные окружения

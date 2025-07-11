@@ -1,4 +1,4 @@
-# WhisperX2 - Краткий обзор проекта
+# whisperx-fronted-docker-compose - Краткий обзор проекта
 
 ## 📊 Статистика проекта
 - **Общий объем:** 16,437+ строк кода
@@ -54,7 +54,7 @@ web_interface/
 
 ### 🔌 Chrome расширение
 ```
-whisperx2-extension/
+whisperx-fronted-docker-compose-extension/
 ├── manifest.json             # 📋 Манифест расширения
 ├── background.js             # ⚙️ Service Worker
 ├── popup.html/js             # 🎛️ Интерфейс расширения
@@ -140,7 +140,7 @@ docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d  # 🚀 С 
 ### CSS файлы
 - **Основные стили:** `web_interface/style.css` (1,988 строк)
 - **Real-time UI:** `web_interface/css/realtime.css` (605 строк)
-- **Chrome extension:** встроено в `whisperx2-extension/popup.html`
+- **Chrome extension:** встроено в `whisperx-fronted-docker-compose-extension/popup.html`
 
 ### Ключевые UI компоненты
 - **Drag & Drop:** `.upload-area` в `style.css`
@@ -155,7 +155,7 @@ docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d  # 🚀 С 
 - **Сервер:** `src/config/settings.py`
 - **Клиент:** `web_interface/config.js`
 - **Docker:** `docker-compose.*.yml`
-- **Chrome extension:** `whisperx2-extension/manifest.json`
+- **Chrome extension:** `whisperx-fronted-docker-compose-extension/manifest.json`
 
 ### Переменные окружения
 ```bash
@@ -182,4 +182,4 @@ JWT_SECRET_KEY             # JWT подпись
 
 ---
 
-*Этот файл создан для быстрой навигации по проекту WhisperX2. Для полной документации см. README.md* 
+*Этот файл создан для быстрой навигации по проекту whisperx-fronted-docker-compose. Для полной документации см. README.md* 

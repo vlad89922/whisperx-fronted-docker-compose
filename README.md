@@ -1,6 +1,6 @@
-# WhisperX2 - AI Транскрипция аудио и видео
+# whisperx-fronted-docker-compose - AI Транскрипция аудио и видео
 
-![WhisperX2 Interface](./docs/screenshot.jpg)
+![whisperx-fronted-docker-compose Interface](./docs/screenshot.jpg)
 
 <!-- Альтернативный способ с HTML: -->
 <!-- <img src="./docs/screenshot.jpg" alt="WhisperX2 Interface" width="100%"> -->
@@ -17,7 +17,7 @@
 
 ## 📋 Описание проекта
 
-WhisperX2 - это полнофункциональная система для транскрипции аудио и видео файлов, построенная на основе WhisperX с современным веб-интерфейсом, API, Chrome расширением и real-time транскрипцией. Система поддерживает экспорт в 6 различных форматов, автоматическую загрузку в Yandex Cloud S3, суммаризацию транскриптов и автоматическую очистку локальных файлов.
+whisperx-fronted-docker-compose - это полнофункциональная система для транскрипции аудио и видео файлов, построенная на основе WhisperX с современным веб-интерфейсом, API, Chrome расширением и real-time транскрипцией. Система поддерживает экспорт в 6 различных форматов, автоматическую загрузку в Yandex Cloud S3, суммаризацию транскриптов и автоматическую очистку локальных файлов.
 
 **Общая статистика проекта:** 16,437+ строк кода
 
@@ -69,7 +69,7 @@ WhisperX2 - это полнофункциональная система для 
 ## 🖥️ Интерфейс системы
 
 ### Главный интерфейс
-Основной интерфейс WhisperX2 включает:
+Основной интерфейс whisperx-fronted-docker-compose включает:
 
 - **Drag & Drop область** для загрузки файлов
 - **Настройки транскрипции**: выбор модели, языка, включение диаризации
@@ -90,7 +90,7 @@ WhisperX2 - это полнофункциональная система для 
 ## 📁 Структура проекта
 
 ```
-whisperX2-clean/                           # Корневая директория проекта
+whisperx-fronted-docker-compose/           # Корневая директория проекта
 ├── 📊 Статистика: 16,437+ строк кода
 ├── 
 ├── 🖥️ СЕРВЕРНАЯ ЧАСТЬ (Backend)
@@ -177,7 +177,7 @@ whisperX2-clean/                           # Корневая директори
 │   └── server.py                         # HTTP сервер для статики (68 строк)
 ├── 
 ├── 🔌 CHROME РАСШИРЕНИЕ
-├── whisperx2-extension/                  # Браузерное расширение (2,943 строки)
+├── whisperx-fronted-docker-compose-extension/  # Браузерное расширение (2,943 строки)
 │   ├── manifest.json                     # Манифест расширения (36 строк)
 │   ├── 
 │   ├── 🎯 Основные компоненты
@@ -398,7 +398,7 @@ graph TB
 ```bash
 # Клонирование репозитория
 git clone <repository-url>
-cd whisperX2-clean
+cd whisperx-fronted-docker-compose
 
 # Создание виртуального окружения
 python -m venv venv
@@ -499,7 +499,7 @@ docker compose ps
 - Управление жизненным циклом файлов
 
 ### 🔌 Chrome расширение
-**Файлы:** `whisperx2-extension/`
+**Файлы:** `whisperx-fronted-docker-compose-extension/`
 
 - Запись встреч из браузера
 - Микширование микрофона и системного звука
@@ -619,10 +619,10 @@ curl -X GET http://localhost:8880/docs
 
 Если проект оказался полезным, поставьте звезду на GitHub! ⭐
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/whisperx2?style=social)](https://github.com/yourusername/whisperx2)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/whisperx2?style=social)](https://github.com/yourusername/whisperx2)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/whisperx2)](https://github.com/yourusername/whisperx2/issues)
-[![GitHub license](https://img.shields.io/github/license/yourusername/whisperx2)](https://github.com/yourusername/whisperx2/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/whisperx-fronted-docker-compose?style=social)](https://github.com/yourusername/whisperx-fronted-docker-compose)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/whisperx-fronted-docker-compose?style=social)](https://github.com/yourusername/whisperx-fronted-docker-compose)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/whisperx-fronted-docker-compose)](https://github.com/yourusername/whisperx-fronted-docker-compose/issues)
+[![GitHub license](https://img.shields.io/github/license/yourusername/whisperx-fronted-docker-compose)](https://github.com/yourusername/whisperx-fronted-docker-compose/blob/main/LICENSE)
 
 ## 📄 Лицензия
 
@@ -631,7 +631,7 @@ curl -X GET http://localhost:8880/docs
 ```
 MIT License
 
-Copyright (c) 2025 WhisperX2 Contributors
+Copyright (c) 2025 whisperx-fronted-docker-compose Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -654,6 +654,6 @@ SOFTWARE.
 
 ---
 
-**Проект WhisperX2** - современное решение для транскрипции с полным стеком технологий, готовое к продакшену и дальнейшему развитию.
+**Проект whisperx-fronted-docker-compose** - современное решение для транскрипции с полным стеком технологий, готовое к продакшену и дальнейшему развитию.
 
 *Последнее обновление: Январь 2025* 

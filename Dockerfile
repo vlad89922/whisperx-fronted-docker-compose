@@ -1,10 +1,10 @@
-# WhisperX2 - AI Транскрипция с GPU поддержкой
+# whisperx-fronted-docker-compose - AI Транскрипция с GPU поддержкой
 # Базовый образ PyTorch с CUDA и cuDNN для GPU ускорения
 
 FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel as base
 
 # Метаданные
-LABEL maintainer="WhisperX2 Team"
+LABEL maintainer="whisperx-fronted-docker-compose Team"
 LABEL description="AI-powered transcription service with WhisperX and GPU support"
 LABEL version="2.0.0"
 

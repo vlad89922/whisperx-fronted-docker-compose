@@ -148,7 +148,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Chrome Extension
-whisperx2-extension.zip
+whisperx-fronted-docker-compose-extension.zip
 *.crx
 *.pem
 *.key

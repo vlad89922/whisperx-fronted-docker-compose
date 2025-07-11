@@ -1,4 +1,4 @@
-# 🚀 Руководство по развертыванию WhisperX2
+# 🚀 Руководство по развертыванию whisperx-fronted-docker-compose
 
 ## 📋 Предварительные требования
 
@@ -144,7 +144,7 @@ const CONFIG = {
 
 ### 1. Обновление конфигурации
 ```javascript
-// whisperx2-extension/config.js
+// whisperx-fronted-docker-compose-extension/config.js
 const CONFIG = {
   API_BASE: 'https://api.your-domain.com/api',
   FRONTEND_URL: 'https://your-domain.com',
@@ -196,10 +196,10 @@ ufw allow 8880/tcp  # API порт
 ### 1. Настройка логов
 ```bash
 # Создайте директорию для логов
-mkdir -p /var/log/whisperx2
+mkdir -p /var/log/whisperx-fronted-docker-compose
 
 # Настройте ротацию логов
-sudo logrotate -d /etc/logrotate.d/whisperx2
+sudo logrotate -d /etc/logrotate.d/whisperx-fronted-docker-compose
 ```
 
 ### 2. Мониторинг производительности

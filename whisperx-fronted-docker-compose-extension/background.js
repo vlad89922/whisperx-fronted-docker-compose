@@ -458,9 +458,9 @@ function showSuccessNotification(uploadResult = null) {
   chrome.notifications.create('whisperx2-upload', {
     type: 'basic',
     iconUrl: 'icons/icon48.png',
-    title: 'WhisperX2 - Запись отправлена!',
+    title: 'whisperx-fronted-docker-compose - Запись отправлена!',
     message: message,
-    buttons: [{title: 'Открыть WhisperX2'}]
+    buttons: [{title: 'Открыть whisperx-fronted-docker-compose'}]
   });
 }
 
