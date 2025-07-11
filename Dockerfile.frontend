@@ -1,0 +1,40 @@
+# WhisperX2 Frontend - Статический веб-сервер
+FROM python:3.11-slim
+
+# Метаданные
+LABEL maintainer="WhisperX2 Team"
+LABEL description="WhisperX2 Frontend Web Interface"
+LABEL version="2.0.0"
+
+# Переменные окружения
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DEBIAN_FRONTEND=noninteractive
+
+# Устанавливаем минимальные системные зависимости
+RUN apt-get update && apt-get install -y \
+    curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Создаем пользователя для безопасности
+RUN groupadd -r frontend && useradd -r -g frontend -d /app -s /bin/bash frontend
+
+# Создаем рабочую директорию
+WORKDIR /app
+
+# Копируем веб-интерфейс
+COPY --chown=frontend:frontend web_interface/ ./web_interface/
+
+# Переключаемся на пользователя frontend
+USER frontend
+
+# Открываем порт
+EXPOSE 8000
+
+# Проверка здоровья контейнера
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000 || exit 1
+
+# Запускаем встроенный веб-сервер
+CMD ["python", "-m", "http.server", "8000", "--directory", "web_interface", "--bind", "0.0.0.0"] 

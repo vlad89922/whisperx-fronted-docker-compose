@@ -1,0 +1,139 @@
+version: '3.8'
+
+# GPU overlay для docker-compose.yml
+# Использование: docker-compose.yml
+
+services:
+  # WhisperX Backend API с GPU поддержкой
+  whisperx-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: whisperx-backend
+    restart: unless-stopped
+    ports:
+      - "8880:8880"  # Backend API
+    volumes:
+      # Монтирование исходного кода для разработки на лету
+      - ./src:/app/src:rw
+      - ./server.py:/app/server.py:rw
+      
+      # Монтирование данных (локальная директория для доступа)
+      - ./data:/app/data
+      
+      # Монтирование моделей WhisperX (кеширование)
+      - whisperx_models:/root/.cache/whisperx
+      
+      # Монтирование Hugging Face кеша
+      - whisperx_hf_cache:/root/.cache/huggingface
+      
+      # Монтирование torch кеша
+      - whisperx_torch_cache:/root/.cache/torch
+    environment:
+      # Основные настройки
+      - PYTHONPATH=/app
+      - ENVIRONMENT=production
+      
+      # Настройки сервера
+      - HOST=0.0.0.0
+      - PORT=8880
+      
+      # Настройки S3 (Yandex Cloud) - используйте .env файл
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_ENDPOINT=https://storage.yandexcloud.net
+      - S3_REGION=ru-central1
+      
+      # Google OAuth настройки
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - REDIRECT_URI=${REDIRECT_URI}
+      
+      # JWT настройки
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      
+      # Настройки WhisperX (автоматическое определение compute_type)
+      - WHISPERX_MODEL=large-v3
+      - WHISPERX_LANGUAGE=ru
+      - WHISPERX_COMPUTE_TYPE=float16
+      - WHISPERX_BATCH_SIZE=16
+      
+      # Hugging Face токен (для диаризации) - используйте .env файл
+      - HF_TOKEN=${HF_TOKEN}
+      
+      # GPU настройки
+      - CUDA_VISIBLE_DEVICES=0
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      
+      # Отладка
+      - DEBUG=false
+      - LOG_LEVEL=info
+    networks:
+      - whisperx_network
+    command: ["python", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8880"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8880/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # GPU поддержка (современный синтаксис)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
+
+  # WhisperX Frontend Web
+  whisperx-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: whisperx-frontend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"  # Frontend Web
+    volumes:
+      # Монтирование frontend кода для разработки на лету
+      - ./web_interface:/app/web_interface:rw
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - API_BASE_URL=http://whisperx-backend:8880
+    networks:
+      - whisperx_network
+    depends_on:
+      - whisperx-backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+# Именованные тома для персистентного хранения
+volumes:
+  whisperx_data:
+    driver: local
+  
+  whisperx_models:
+    driver: local
+    name: whisperx_models
+  
+  whisperx_hf_cache:
+    driver: local
+    name: whisperx_hf_cache
+  
+  whisperx_torch_cache:
+    driver: local
+    name: whisperx_torch_cache
+
+# Сеть для изоляции сервисов
+networks:
+  whisperx_network:
+    driver: bridge
+    name: whisperx_network 

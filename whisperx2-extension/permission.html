@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Microphone Permission Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .button:hover {
+            background-color: #45a049;
+        }
+        
+        .button.deny {
+            background-color: #f44336;
+        }
+        
+        .button.deny:hover {
+            background-color: #da190b;
+        }
+        
+        .status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            color: #4caf50;
+        }
+        
+        .status.error {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🎙️</div>
+        <h1>Microphone Permission Required</h1>
+        <div class="message">
+            This extension needs access to your microphone to record audio.
+            <br><br>
+            Please click "Allow Microphone Access" to grant permission.
+            <br>
+            Your browser will show a permission dialog.
+        </div>
+        
+        <button id="allowBtn" class="button">Allow Microphone Access</button>
+        <button id="denyBtn" class="button deny">Deny Access</button>
+        
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+    
+    <script src="permission.js"></script>
+</body>
+</html> 

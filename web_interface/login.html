@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - WhisperX2</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .auth-section {
+            margin-top: 30px;
+        }
+
+        .welcome-text {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .google-login-btn {
+            width: 100%;
+            padding: 15px 20px;
+            background: #fff;
+            color: #333;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .google-login-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .google-login-btn:hover:before {
+            left: 100%;
+        }
+
+        .google-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #4285f4;
+        }
+
+        .google-login-btn:active {
+            transform: translateY(0);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgPHBhdGggZD0iTTE3LjY0IDkuMjA0NTQ1NDVjMC0uNjM5NzI3MjctLjA1NzI3MjczLTEuMjUyMjcyNzMtLjE2MzYzNjM2LTEuODQwOTA5MDlIOXY0LjQ4NTQ1NDU1aDQuODQ0NTQ1NDVjLS4yMDQ1NDU0NSAxLjA4NjM2MzY0LS44MjcyNzI3MyAxLjk5NTQ1NDU1LTEuNzYzNjM2MzYgMi42MDQ1NDU0NXY0LjMwOTA5MDlIMTUuNzJjMi42NzI3MjczLTIuNDYzNjM2MzYgNC4yNTQ1NDU0NS02LjA5NTQ1NDU1IDQuMjU0NTQ1NDUtMTAuNzEzNjM2MzZ6IiBmaWxsPSIjNDI4NUY0Ii8+CiAgICA8cGF0aCBkPSJNOSAxOGMzLjI0IDAgNS45NTQ1NDU0NS0xLjA3NzI3MjczIDcuOTU0NTQ1NDUtMi45MjcyNzI3M2wtMy43NjM2MzYzNi0yLjkwOTA5MDljLTEuMDQ1NDU0NTUuNzA5MDkwOTEtMi4zODYzNjM2NCAxLjEzMTgxODE4LTQuMTkwOTA5MDkgMS4xMzE4MTgxOC0zLjIxODE4MTgyIDAtNS45NDU0NTQ1NS0yLjE3NzI3MjczLTYuOTE4MTgxODItNS4wOTU0NTQ1NUguOTI3MjcyNzN2My4yNzI3MjcyN0MxLjc5MDkwOTA5IDEzLjk1NDU0NTQ1IDUuMTM2MzYzNjQgMTggOSAxOHoiIGZpbGw9IiMzNEE4NTMiLz4KICAgIDxwYXRoIGQ9Ik0yLjA4MTgxODE4IDEwLjU5MDkwOTFjLS4xOTA5MDkwOS0uNTcyNzI3MjctLjI5NTQ1NDU1LTEuMTc3MjcyNzMtLjI5NTQ1NDU1LTEuODA5MDkwOXMuMTA0NTQ1NDUtMS4yMzYzNjM2NC4yOTU0NTQ1NS0xLjgwOTA5MDlWMy42OTU0NTQ1NUguOTI3MjcyNzNDLjMzNjM2MzY0IDUuMjE4MTgxODIgMCA3LjA0NTQ1NDU1IDAgOXMuMzM2MzYzNjQgMy43ODE4MTgxOC45MjcyNzI3MyA1LjMwNDU0NTQ1bDEuMTU0NTQ1NDUtLjkwOTA5MDl2LTIuODA0NTQ1NDV6IiBmaWxsPSIjRkJCQzA0Ii8+CiAgICA8cGF0aCBkPSJNOSAzLjU0NTQ1NDU1YzEuODE4MTgxODIgMCAzLjQ1NDU0NTQ1LjYyNzI3MjczIDQuNzM2MzYzNjQgMS44NTQ1NDU0NWwzLjU0NTQ1NDU1LTMuNTQ1NDU0NTRDMTU4MTgxODIuNjgxODE4MTggMTIuMjQgMCA5IDBjLTMuODYzNjM2MzYgMC03LjIwOTA5MDkxIDIuMDQ1NDU0NTUtOC45MjcyNzI3MyA1LjA5NTQ1NDU1bDEuMTU0NTQ1NDUgMi44MDQ1NDU0NUMyLjE4MTgxODE4IDUuNzIyNzI3MjcgNS4yNzI3MjcyNyAzLjU0NTQ1NDU1IDkgMy41NDU0NTQ1NXoiIGZpbGw9IiNFQTQzMzUiLz4KICA8L2c+Cjwvc3ZnPgo=') no-repeat center;
+            background-size: contain;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #f44336;
+            display: none;
+        }
+
+        .success-message {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #4caf50;
+            display: none;
+        }
+
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading .google-login-btn {
+            background: #f5f5f5;
+            color: #999;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .security-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .security-info i {
+            color: #28a745;
+            margin-right: 8px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .logo i {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <i class="fas fa-microphone-alt"></i>
+            <h1>WhisperX2</h1>
+            <p>AI Транскрипция с Google OAuth</p>
+        </div>
+
+        <div class="auth-section">
+            <div class="welcome-text">
+                Войдите с помощью Google аккаунта для доступа к вашим персональным транскрипциям
+            </div>
+
+            <a href="http://localhost:8880/api/auth/google/login" class="google-login-btn" id="googleLoginBtn">
+                <div class="google-icon"></div>
+                <span>Войти через Google</span>
+            </a>
+
+            <div class="security-info">
+                <i class="fas fa-shield-alt"></i>
+                Безопасный вход через Google OAuth 2.0. Мы не сохраняем ваш пароль.
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="errorText">Ошибка входа</span>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <span>Вход выполнен успешно! Перенаправление...</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 WhisperX2. Персональные транскрипции для каждого пользователя.</p>
+        </div>
+    </div>
+
+    <script>
+        // Проверяем параметры URL для обработки результата OAuth
+        const urlParams = new URLSearchParams(window.location.search);
+        const authResult = urlParams.get('auth');
+        const error = urlParams.get('error');
+
+        if (authResult === 'success') {
+            // Показываем сообщение об успехе
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Перенаправляем на главную страницу через 2 секунды
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
+        } else if (error) {
+            // Показываем ошибку
+            document.getElementById('errorText').textContent = decodeURIComponent(error);
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+
+        // Обработчик клика на кнопку Google входа
+        document.getElementById('googleLoginBtn').addEventListener('click', function(e) {
+            // Показываем состояние загрузки
+            document.body.classList.add('loading');
+            
+            // Убираем состояние загрузки через 10 секунд (на случай если что-то пойдет не так)
+            setTimeout(() => {
+                document.body.classList.remove('loading');
+            }, 10000);
+        });
+
+        // Проверяем статус аутентификации при загрузке страницы
+        fetch('http://localhost:8880/api/auth/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.authenticated) {
+                    // Пользователь уже авторизован, перенаправляем на главную
+                    window.location.href = '/';
+                }
+            })
+            .catch(error => {
+                console.log('Пользователь не авторизован');
+            });
+    </script>
+</body>
+</html> 

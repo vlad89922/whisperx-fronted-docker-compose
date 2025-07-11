@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 300px;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        p {
+            margin: 10px 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        button {
+            margin: 8px 0;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        
+        button:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        #loginBtn {
+            background-color: #4285f4;
+            color: white;
+        }
+        
+        #requestPermissionBtn {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        #startBtn {
+            background-color: #51cf66;
+            color: white;
+        }
+        
+        #stopBtn {
+            background-color: #ffd43b;
+            color: black;
+        }
+        
+        .btn-web {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        #userInfo {
+            padding: 10px;
+            background: #e8f0fe;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #1a73e8;
+        }
+        
+        #status {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #f8f9fa;
+            color: #5f6368;
+        }
+        
+        .permission-status {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        
+        .permission-granted {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .permission-denied {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .permission-unknown {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        /* Стили для информации о записи */
+        #recordingInfo {
+            margin: 15px 0;
+            padding: 15px;
+            background: #e8f5e8;
+            border-radius: 8px;
+            border: 2px solid #4caf50;
+        }
+        
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .audio-levels {
+            margin-top: 10px;
+        }
+        
+        .level-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 12px;
+        }
+        
+        .level-label {
+            width: 80px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .level-bar {
+            flex: 1;
+            height: 16px;
+            background: #ddd;
+            border-radius: 8px;
+            margin: 0 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .level-fill {
+            height: 100%;
+            transition: width 0.1s ease;
+            border-radius: 8px;
+        }
+        
+        .mic-level {
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+        }
+        
+        .tab-level {
+            background: linear-gradient(90deg, #2196f3, #03a9f4);
+        }
+        
+        .level-text {
+            width: 35px;
+            text-align: right;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        
+        /* Стили для настроек записи */
+        #recordingSettings {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .setting-item {
+            margin: 8px 0;
+        }
+        
+        .setting-item label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .setting-item input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+        
+        .checkmark {
+            user-select: none;
+        }
+        
+        .setting-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .device-select {
+            flex: 1;
+            padding: 6px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+            background: white;
+            margin-right: 5px;
+        }
+        
+        .btn-small {
+            padding: 6px 8px;
+            border: none;
+            border-radius: 4px;
+            background: #f0f0f0;
+            cursor: pointer;
+            font-size: 12px;
+            min-width: 30px;
+        }
+        
+        .btn-small:hover {
+            background: #e0e0e0;
+        }
+        
+        .mix-info {
+            margin-top: 10px;
+            padding: 8px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .mix-label {
+            font-size: 12px;
+            color: #1976d2;
+            font-weight: bold;
+        }
+        
+        /* Toggle Switch для разделения спикеров */
+        .toggle-setting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 8px 0;
+        }
+        
+        .toggle-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .toggle-status {
+            font-size: 11px;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 28px;
+            cursor: pointer;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-switch input:disabled + .toggle-slider {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            border: 2px solid #ddd;
+            border-radius: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            top: 2px;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        
+        .toggle-text-off,
+        .toggle-text-on {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .toggle-text-off {
+            right: 6px;
+            color: #666;
+            opacity: 1;
+        }
+        
+        .toggle-text-on {
+            left: 6px;
+            color: #fff;
+            opacity: 0;
+        }
+        
+        /* Состояние включено */
+        .toggle-switch input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-color: #4CAF50;
+            box-shadow: inset 0 2px 4px rgba(76, 175, 80, 0.2), 0 0 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+            background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider .toggle-text-off {
+            opacity: 0;
+        }
+        
+        .toggle-switch input:checked + .toggle-slider .toggle-text-on {
+            opacity: 1;
+        }
+        
+        /* Hover эффекты (только если не disabled) */
+        .toggle-switch:hover input:not(:disabled) + .toggle-slider {
+            border-color: #bbb;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.15), 0 0 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .toggle-switch:hover input:checked:not(:disabled) + .toggle-slider {
+            border-color: #45a049;
+            box-shadow: inset 0 2px 4px rgba(76, 175, 80, 0.3), 0 0 18px rgba(76, 175, 80, 0.4);
+        }
+        
+        .toggle-switch:hover input:not(:disabled) + .toggle-slider:before {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .toggle-switch:hover input:checked:not(:disabled) + .toggle-slider:before {
+            box-shadow: 0 3px 12px rgba(76, 175, 80, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Состояние 1: Нужна авторизация -->
+        <div id="loginSection">
+            <h3>🎤 WhisperX2</h3>
+            <p>Войдите для записи встреч</p>
+            <button id="loginBtn">🔐 Войти через Google</button>
+        </div>
+        
+        <!-- Состояние 2: Готов к записи -->
+        <div id="recordingSection" style="display:none">
+            <h3>🎤 WhisperX2</h3>
+            <div id="userInfo">Привет, <span id="userName">Пользователь</span>!</div>
+            
+            <!-- Секция разрешения микрофона -->
+            <div id="permissionSection">
+                <div id="permissionStatus" class="permission-status permission-unknown">
+                    🎙️ Проверяем разрешение микрофона...
+                </div>
+                <button id="requestPermissionBtn" style="display:none">
+                    🎙️ Разрешить доступ к микрофону
+                </button>
+            </div>
+            
+            <!-- Настройки записи -->
+            <div id="recordingSettings" style="display:none">
+                <div class="setting-item">
+                    <div class="toggle-setting">
+                        <span class="toggle-label">
+                            🎭 Разделение по спикерам
+                            <span class="toggle-status">(всегда включено)</span>
+                        </span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="diarizeCheckbox" checked disabled>
+                            <span class="toggle-slider">
+                                <span class="toggle-text-off">OFF</span>
+                                <span class="toggle-text-on">ON</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label class="setting-label">🎤 Микрофон:</label>
+                    <div style="display: flex; align-items: center;">
+                        <select id="microphoneSelect" class="device-select">
+                            <option value="">Загружаем микрофоны...</option>
+                        </select>
+                        <button id="refreshMicsBtn" class="btn-small">🔄</button>
+                    </div>
+                </div>
+                
+                <div class="mix-info">
+                    <span class="mix-label">🎛️ Микрофон x2 → Запись | Вкладка x1 → Запись + Динамики</span>
+                </div>
+            </div>
+            
+            <!-- Кнопки записи -->
+            <div id="recordingControls" style="display:none">
+                <button id="startBtn">🎙️ Записать встречу</button>
+                <button id="stopBtn" style="display:none">⏹️ Остановить и отправить</button>
+            </div>
+            
+            <!-- Информация о записи -->
+            <div id="recordingInfo" style="display:none">
+                <div class="timer">⏱️ <span id="recordingTimer">00:00</span></div>
+                <div class="audio-levels">
+                    <div class="level-item">
+                        <span class="level-label">🎙️ Микрофон:</span>
+                        <div class="level-bar">
+                            <div class="level-fill mic-level" id="micLevel"></div>
+                        </div>
+                        <span class="level-text" id="micLevelText">0%</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-label">🔊 Вкладка:</span>
+                        <div class="level-bar">
+                            <div class="level-fill tab-level" id="tabLevel"></div>
+                        </div>
+                        <span class="level-text" id="tabLevelText">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кнопка перехода в веб-интерфейс -->
+            <div id="webInterfaceSection" style="display:none">
+                <button id="openWebBtn" class="btn btn-web">🌐 Открыть WhisperX2</button>
+            </div>
+            
+            <div id="status">Готов к записи встреч</div>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html> 
