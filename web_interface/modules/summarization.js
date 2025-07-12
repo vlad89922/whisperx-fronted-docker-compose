@@ -172,22 +172,16 @@ class SummarizationManager {
         }
 
         try {
-            console.log('[Summarization] Получение данных транскрипции...');
-            // Получаем JSON данные транскрипции
-            const transcriptionData = await this.getTranscriptionData();
+            console.log('[Summarization] Отправка запроса на бэкенд...');
+            // Отправляем запрос на бэкенд для создания суммаризации
+            const response = await this.apiManager.makeRequest(`${CONFIG.API.ENDPOINTS.SUMMARIZE}/${this.currentTaskId}`, {
+                method: 'POST'
+            });
             
-            if (!transcriptionData) {
-                throw new Error('Не удалось получить данные транскрипции');
-            }
-
-            console.log('[Summarization] Данные получены, отправка на суммаризацию...');
-            // Отправляем на суммаризацию
-            const summary = await this.callSummarizationAPI(transcriptionData);
-            
-            if (summary) {
+            if (response && response.summary) {
                 console.log('[Summarization] Суммари получено успешно');
-                this.currentSummary = summary;
-                this.displaySummary(summary);
+                this.currentSummary = response.summary;
+                this.displaySummary(response.summary);
                 this.updateSummarizationStatus('Суммари готово', 'success');
             } else {
                 throw new Error('Не удалось создать суммари');
@@ -339,12 +333,45 @@ class SummarizationManager {
         return false;
     }
 
+    // Получение конфигурации суммаризации с сервера
+    async getSummarizationConfig() {
+        try {
+            console.log('[Summarization] Получение конфигурации суммаризации с сервера...');
+            const response = await this.apiManager.makeRequest(CONFIG.API.ENDPOINTS.SUMMARIZATION_CONFIG);
+            
+            if (response && response.api_url) {
+                console.log('[Summarization] Конфигурация получена:', response);
+                return response;
+            } else {
+                throw new Error('Некорректная конфигурация получена от сервера');
+            }
+        } catch (error) {
+            console.error('[Summarization] Ошибка получения конфигурации с сервера:', error);
+            
+            // Fallback на конфигурацию из CONFIG.js (если есть)
+            console.log('[Summarization] Использование fallback конфигурации...');
+            return {
+                api_url: window.CONFIG?.SUMMARIZATION?.API_URL || 'http://localhost:11434/v1/chat/completions',
+                api_key: window.CONFIG?.SUMMARIZATION?.API_KEY || 'your-api-key-here',
+                model: window.CONFIG?.SUMMARIZATION?.MODEL || 'llama3.1:8b',
+                max_tokens: window.CONFIG?.SUMMARIZATION?.MAX_TOKENS || 4000,
+                temperature: window.CONFIG?.SUMMARIZATION?.TEMPERATURE || 0.1,
+                has_api_key: window.CONFIG?.SUMMARIZATION?.API_KEY && window.CONFIG?.SUMMARIZATION?.API_KEY !== 'your-api-key-here'
+            };
+        }
+    }
+
     // Вызов API суммаризации
     async callSummarizationAPI(transcriptionData) {
         console.log('[Summarization] Начало вызова API суммаризации');
         
-        const apiUrl = window.CONFIG?.SUMMARIZATION?.API_URL || 'http://localhost:11434/v1/chat/completions'; // Ollama local endpoint
-        const apiKey = window.CONFIG?.SUMMARIZATION?.API_KEY || 'your-api-key-here';
+        // Получаем конфигурацию с сервера
+        const config = await this.getSummarizationConfig();
+        const apiUrl = config.api_url;
+        const apiKey = config.api_key;
+        const model = config.model;
+        const maxTokens = config.max_tokens;
+        const temperature = config.temperature;
 
         try {
             // Извлекаем данные по спикерам
@@ -425,9 +452,9 @@ class SummarizationManager {
                         "content": prompt
                     }
                 ],
-                "model": "set-model",
-                "max_tokens": 4000,
-                "temperature": 0.1,
+                "model": model,
+                "max_tokens": maxTokens,
+                "temperature": temperature,
                 "guided_json": JSON.stringify(summarizationSchema),
                 "guided_decoding_backend": "xgrammar",
                 "frequency_penalty": 0,

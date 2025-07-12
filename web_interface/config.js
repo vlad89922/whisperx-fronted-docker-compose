@@ -12,7 +12,9 @@ const CONFIG = {
             DOWNLOAD_TRANSCRIPT: '/api/download/transcript',
             DOWNLOAD_SUBTITLE: '/api/download/subtitle',
             DELETE_TRANSCRIPTION: '/api/transcription',
-            S3_LINKS: '/api/s3-links'  // Новый эндпоинт для получения S3 ссылок
+            S3_LINKS: '/api/s3-links',  // Новый эндпоинт для получения S3 ссылок
+            SUMMARIZE: '/api/summarize',  // Эндпоинт для суммаризации
+            SUMMARIZATION_CONFIG: '/api/config/summarization'  // Эндпоинт для конфигурации суммаризации
         }
     },
 
@@ -55,14 +57,8 @@ const CONFIG = {
         ]
     },
 
-    // Настройки суммаризации
-    SUMMARIZATION: {
-        API_URL: 'http://localhost:11434/v1/chat/completions',
-        API_KEY: 'your-api-key-here',
-        MODEL: 'your-model-name',
-        MAX_TOKENS: 4000,
-        TEMPERATURE: 0.1
-    },
+    // Настройки суммаризации перенесены в переменные окружения сервера
+    // Конфигурация теперь получается через API: /api/config/summarization
 
     // Поддерживаемые форматы файлов
     FILE_FORMATS: {

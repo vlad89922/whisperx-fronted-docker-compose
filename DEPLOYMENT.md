@@ -131,15 +131,12 @@ const CONFIG = {
     API: {
         BASE_URL: 'https://api.your-domain.com',
         // ... другие настройки
-    },
-    
-    SUMMARIZATION: {
-        API_URL: 'https://your-ollama-server.com/v1/chat/completions',
-        API_KEY: 'your-api-key',
-        MODEL: 'llama3.1:8b',
-        MAX_TOKENS: 4000,
-        TEMPERATURE: 0.1
     }
+    
+    // Настройки суммаризации теперь получаются с сервера
+    // через API endpoint /api/config/summarization
+    // Настройте переменные окружения в .env файле:
+    // SUMMARIZATION_API_URL, SUMMARIZATION_API_KEY, SUMMARIZATION_MODEL, и т.д.
 };
 ```
 

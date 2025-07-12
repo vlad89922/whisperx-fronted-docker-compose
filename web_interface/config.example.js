@@ -17,7 +17,10 @@ const CONFIG = {
             DOWNLOAD_AUDIO: '/download/audio',
             DOWNLOAD_TRANSCRIPT: '/download/transcript',
             DOWNLOAD_SUBTITLE: '/download/subtitle',
-            DELETE_TRANSCRIPTION: '/transcription'
+            DELETE_TRANSCRIPTION: '/transcription',
+            S3_LINKS: '/s3-links',  // Эндпоинт для получения S3 ссылок
+            SUMMARIZE: '/summarize',  // Эндпоинт для суммаризации
+            SUMMARIZATION_CONFIG: '/config/summarization'  // Эндпоинт для конфигурации суммаризации
         }
     },
 
@@ -61,14 +64,10 @@ const CONFIG = {
         DEFAULT_BATCH_SIZE: 16
     },
 
-    // Настройки суммаризации
-    SUMMARIZATION: {
-        API_URL: 'http://localhost:11434/v1/chat/completions',
-        API_KEY: 'your-api-key-here',
-        MODEL: 'your-model-name',
-        MAX_TOKENS: 4000,
-        TEMPERATURE: 0.1
-    },
+    // Настройки суммаризации перенесены в переменные окружения сервера
+    // Конфигурация теперь получается через API: /api/config/summarization
+    // Настройте переменные окружения в .env файле:
+    // SUMMARIZATION_API_URL, SUMMARIZATION_API_KEY, SUMMARIZATION_MODEL, и т.д.
 
     // Настройки разработки
     DEBUG: {

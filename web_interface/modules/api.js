@@ -227,6 +227,54 @@ class ApiManager {
             xhr.send();
         });
     }
+
+    // Универсальный метод для API запросов
+    async makeRequest(endpoint, options = {}) {
+        const url = `${this.baseUrl}${endpoint}`;
+        
+        const defaultOptions = {
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        
+        const requestOptions = {
+            ...defaultOptions,
+            ...options
+        };
+        
+        // Если передан body и это не FormData, конвертируем в JSON
+        if (requestOptions.body && !(requestOptions.body instanceof FormData)) {
+            requestOptions.body = JSON.stringify(requestOptions.body);
+        }
+        
+        if (CONFIG.DEBUG && CONFIG.DEBUG.LOG_API_CALLS) {
+            console.log(`[API] Making request to: ${url}`, requestOptions);
+        }
+        
+        try {
+            const response = await fetch(url, requestOptions);
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error(`[API] Error: ${response.status} - ${errorText}`);
+                throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+            }
+            
+            const data = await response.json();
+            
+            if (CONFIG.DEBUG && CONFIG.DEBUG.LOG_API_CALLS) {
+                console.log(`[API] Response received:`, data);
+            }
+            
+            return data;
+            
+        } catch (error) {
+            console.error('[API] Request failed:', error);
+            throw error;
+        }
+    }
 }
 
 // Экспорт для использования в других модулях

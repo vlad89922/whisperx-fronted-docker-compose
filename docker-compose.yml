@@ -62,6 +62,13 @@ services:
       # Hugging Face токен (для диаризации) - используйте .env файл
       - HF_TOKEN=${HF_TOKEN}
       
+      # Настройки суммаризации
+      - SUMMARIZATION_API_URL=${SUMMARIZATION_API_URL:-http://localhost:11434/v1/chat/completions}
+      - SUMMARIZATION_API_KEY=${SUMMARIZATION_API_KEY:-your-api-key-here}
+      - SUMMARIZATION_MODEL=${SUMMARIZATION_MODEL:-llama3.1:8b}
+      - SUMMARIZATION_MAX_TOKENS=${SUMMARIZATION_MAX_TOKENS:-4000}
+      - SUMMARIZATION_TEMPERATURE=${SUMMARIZATION_TEMPERATURE:-0.1}
+      
       # GPU настройки
       - CUDA_VISIBLE_DEVICES=0
       - NVIDIA_VISIBLE_DEVICES=all
