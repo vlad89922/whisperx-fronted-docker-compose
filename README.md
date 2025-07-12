@@ -1,6 +1,6 @@
 # whisperx-fronted-docker-compose - AI Транскрипция аудио и видео
 
-![whisperx-fronted-docker-compose Interface](./docs/screenshot.jpg)
+![WhisperX2 Interface](https://private-user-images.githubusercontent.com/45563649/465516642-a98b79ff-9e34-4d86-bdc8-431359286852.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTIyNzYzNzQsIm5iZiI6MTc1MjI3NjA3NCwicGF0aCI6Ii80NTU2MzY0OS80NjU1MTY2NDItYTk4Yjc5ZmYtOWUzNC00ZDg2LWJkYzgtNDMxMzU5Mjg2ODUyLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA3MTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNzExVDIzMjExNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWJmMjVmOTA2YmJkNzE3MzY5NDQ0NGUxYmQ4NmIwZjMyNDI4NjYyM2JhMmE0ZTlkMGFhMDdkOTExNzMyODdmOGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.YjXnoXn0Tly9mXoFlnS9pSHK3BvtQUfb6fwehdkhGIk)
 
 > **Основано на [WhisperX](https://github.com/m-bain/whisperX)** - Automatic Speech Recognition with Word-level Timestamps & Diarization  
 > Copyright (c) 2024, Max Bain. Лицензия BSD-2-Clause.
