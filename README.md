@@ -7,8 +7,6 @@
 
 
 ⚡ **Быстрый старт:** [QUICKSTART.md](QUICKSTART.md)  
-📖 **Подробное руководство:** [DEPLOYMENT.md](DEPLOYMENT.md)  
-🤖 **Настройка AI суммаризации:** [SUMMARIZATION_SETUP.md](SUMMARIZATION_SETUP.md)
 
 ## 🚀 Быстрый старт
 
