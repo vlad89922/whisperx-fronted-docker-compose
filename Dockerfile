@@ -1,4 +1,5 @@
 # whisperx-fronted-docker-compose - AI Транскрипция с GPU поддержкой
+# Основано на WhisperX by Max Bain (https://github.com/m-bain/whisperX)
 # Базовый образ PyTorch с CUDA и cuDNN для GPU ускорения
 
 FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel as base

@@ -2,6 +2,9 @@
 
 ![whisperx-fronted-docker-compose Interface](./docs/screenshot.jpg)
 
+> **Основано на [WhisperX](https://github.com/m-bain/whisperX)** - Automatic Speech Recognition with Word-level Timestamps & Diarization  
+> Copyright (c) 2024, Max Bain. Лицензия BSD-2-Clause.
+
 <!-- Альтернативный способ с HTML: -->
 <!-- <img src="./docs/screenshot.jpg" alt="WhisperX2 Interface" width="100%"> -->
 
@@ -17,7 +20,7 @@
 
 ## 📋 Описание проекта
 
-whisperx-fronted-docker-compose - это полнофункциональная система для транскрипции аудио и видео файлов, построенная на основе WhisperX с современным веб-интерфейсом, API, Chrome расширением и real-time транскрипцией. Система поддерживает экспорт в 6 различных форматов, автоматическую загрузку в Yandex Cloud S3, суммаризацию транскриптов и автоматическую очистку локальных файлов.
+whisperx-fronted-docker-compose - это полнофункциональная система для транскрипции аудио и видео файлов, построенная на основе [WhisperX](https://github.com/m-bain/whisperX) с современным веб-интерфейсом, API, Chrome расширением и real-time транскрипцией. Система поддерживает экспорт в 6 различных форматов, автоматическую загрузку в Yandex Cloud S3, суммаризацию транскриптов и автоматическую очистку локальных файлов.
 
 **Общая статистика проекта:** 16,437+ строк кода
 
@@ -623,6 +626,45 @@ curl -X GET http://localhost:8880/docs
 [![GitHub forks](https://img.shields.io/github/forks/yourusername/whisperx-fronted-docker-compose?style=social)](https://github.com/yourusername/whisperx-fronted-docker-compose)
 [![GitHub issues](https://img.shields.io/github/issues/yourusername/whisperx-fronted-docker-compose)](https://github.com/yourusername/whisperx-fronted-docker-compose/issues)
 [![GitHub license](https://img.shields.io/github/license/yourusername/whisperx-fronted-docker-compose)](https://github.com/yourusername/whisperx-fronted-docker-compose/blob/main/LICENSE)
+
+## 🙏 Благодарности
+
+Этот проект основан на замечательной работе:
+
+- **[WhisperX](https://github.com/m-bain/whisperX)** by Max Bain - оригинальная библиотека для транскрипции с временными метками и диаризацией спикеров
+- **[OpenAI Whisper](https://github.com/openai/whisper)** - базовая модель для распознавания речи
+- **[pyannote-audio](https://github.com/pyannote/pyannote-audio)** - для диаризации спикеров
+- **[FastAPI](https://github.com/tiangolo/fastapi)** - современный веб-фреймворк для создания API
+
+### 📜 Лицензия WhisperX
+
+WhisperX распространяется под лицензией BSD-2-Clause:
+
+```
+Copyright (c) 2024, Max Bain
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
 
 ## 📄 Лицензия
 

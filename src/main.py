@@ -1,5 +1,9 @@
 """
 Главный файл приложения FastAPI
+whisperx-fronted-docker-compose - AI Транскрипция с Google OAuth
+
+Основано на WhisperX by Max Bain (https://github.com/m-bain/whisperX)
+Лицензия WhisperX: BSD-2-Clause
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
