@@ -1,6 +1,7 @@
 # 🚀 Руководство по развертыванию whisperx-fronted-docker-compose
 
-> **Основано на [WhisperX](https://github.com/m-bain/whisperX)** by Max Bain  
+> ** Авторство: © 2025 ITSM Plus (Perm). Проект разработан специалистами и разработчиками компании ITSM Plus (Perm).
+
 > Лицензия BSD-2-Clause
 
 ## 📋 Предварительные требования

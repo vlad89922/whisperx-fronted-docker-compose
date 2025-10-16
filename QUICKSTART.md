@@ -10,8 +10,8 @@
 
 ### 1. Клонируем и настраиваем
 ```bash
-git clone https://github.com/your-repo/whisperx-fronted-docker-compose
-cd whisperx-fronted-docker-compose
+git clone 
+cd 
 cp .env.example .env
 ```
 

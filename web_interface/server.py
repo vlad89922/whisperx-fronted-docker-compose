@@ -29,13 +29,10 @@ class CORSHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
     
     def do_GET(self):
-        # Перенаправляем корневой путь на страницу логина
-        if self.path == '/':
-            self.send_response(302)
-            self.send_header('Location', '/login.html')
-            self.end_headers()
-            return
-        
+        # При обращении к корню сразу отдаем index.html (минуем страницу логина)
+        if self.path == '/' or self.path == '':
+            self.path = '/index.html'
+
         # Обычная обработка для остальных путей
         super().do_GET()
 

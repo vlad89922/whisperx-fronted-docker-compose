@@ -1,8 +1,7 @@
 # whisperx-fronted-docker-compose - AI Транскрипция аудио и видео
 
-
-
-https://github.com/user-attachments/assets/7e9899b9-08fc-4c5a-96f0-fffbe1ee2390
+## Авторство
+© 2025 ITSM Plus (Perm). Проект разработан специалистами и разработчиками компании ITSM Plus (Perm).
 
 
 
@@ -26,7 +25,7 @@ https://github.com/user-attachments/assets/7e9899b9-08fc-4c5a-96f0-fffbe1ee2390
 
 ```bash
 # 1. Клонируем репозиторий
-git clone https://github.com/your-repo/whisperx-fronted-docker-compose
+git clone #вставить ссылку на репозиторий
 cd whisperx-fronted-docker-compose
 
 # 2. Настраиваем переменные окружения
@@ -695,14 +694,6 @@ curl -X GET http://localhost:8880/docs
 # Используйте любой CSS/JS линтер
 ```
 
-## ⭐ Поддержка проекта
-
-Если проект оказался полезным, поставьте звезду на GitHub! ⭐
-
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/whisperx-fronted-docker-compose?style=social)](https://github.com/yourusername/whisperx-fronted-docker-compose)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/whisperx-fronted-docker-compose?style=social)](https://github.com/yourusername/whisperx-fronted-docker-compose)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/whisperx-fronted-docker-compose)](https://github.com/yourusername/whisperx-fronted-docker-compose/issues)
-[![GitHub license](https://img.shields.io/github/license/yourusername/whisperx-fronted-docker-compose)](https://github.com/yourusername/whisperx-fronted-docker-compose/blob/main/LICENSE)
 
 ## 🙏 Благодарности
 
