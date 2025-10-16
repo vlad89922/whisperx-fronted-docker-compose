@@ -26,23 +26,20 @@ class AuthManager {
                 } else {
                     this.isAuthenticated = false;
                     this.user = null;
-                    // Перенаправляем на страницу входа
-                    window.location.href = '/login.html';
+                    // Не перенаправляем — просто возвращаем false и даём загрузиться index.html
                     return false;
                 }
             } else {
                 this.isAuthenticated = false;
                 this.user = null;
-                // Перенаправляем на страницу входа
-                window.location.href = '/login.html';
+                // Не перенаправляем — просто возвращаем false
                 return false;
             }
         } catch (error) {
             console.error('Ошибка проверки аутентификации:', error);
             this.isAuthenticated = false;
             this.user = null;
-            // Перенаправляем на страницу входа
-            window.location.href = '/login.html';
+            // Не перенаправляем — просто возвращаем false
             return false;
         }
     }
@@ -93,14 +90,14 @@ class AuthManager {
             this.user = null;
             this.isAuthenticated = false;
             
-            // Перенаправляем на страницу входа
-            window.location.href = '/login.html';
+            // После выхода возвращаемся на главную
+            window.location.href = '/';
         } catch (error) {
             console.error('Ошибка при выходе:', error);
             // Все равно очищаем и перенаправляем
             this.user = null;
             this.isAuthenticated = false;
-            window.location.href = '/login.html';
+            window.location.href = '/';
         }
     }
 
